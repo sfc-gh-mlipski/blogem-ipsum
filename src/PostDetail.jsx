@@ -26,22 +26,12 @@ async function updatePost (postId) {
 
 export function PostDetail ({ post }) {
   //TODO 9: replace with useQuery
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['comments', post.id],
-    queryFn: () => fetchComments(post.id),
-  });
-  const deleteMutation = useMutation({ mutationFn: () => deletePost(post.id) });
+  const data = []
 
-  if (isLoading) {
-    return (<div>Loading...</div>);
-  }
-  if (isError) {
-    return (<div>Error: { error.toString() }</div>);
-  }
   return (
     <>
       <h3 style={ { color: 'blue' } }>{ post.title }</h3>
-      <button onClick={deleteMutation.mutate}>Delete</button>
+      <button>Delete</button>
       <button>Update title</button>
       <p>{ post.body }</p>
       <h4>Comments</h4>
