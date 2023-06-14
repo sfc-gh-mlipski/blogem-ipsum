@@ -20,7 +20,15 @@ export function Posts () {
   // TODO: 3 handle loading state
   // TODO: 4 handle error state
   // TODO: 5 use onError callback
-  const data = []
+  const {data, isLoading, isError, error} = useQuery({ queryKey: ['posts'], queryFn: fetchPosts, staleTime:5000 })
+
+  if (isLoading) {
+    return <span>Loading...</span>
+  }
+
+  if (isError) {
+    return (<div>Error: {error.toString()}</div>);
+  }
   return (
     <>
       <ul>
